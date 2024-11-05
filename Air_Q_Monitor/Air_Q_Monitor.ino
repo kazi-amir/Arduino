@@ -13,12 +13,9 @@ DHT dht(DHTPIN, DHTTYPE);
 
 
 
-
-
-
 //LCD Display
 #include<LiquidCrystal.h>
-const int rs = 7, en = 9, d4 = 10, d5 = 11, d6 = 12, d7 = 13;
+const int rs = 8, en = 9, d4 = 10, d5 = 11, d6 = 12, d7 = 13;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 void resetLCD(){
@@ -28,22 +25,23 @@ void resetLCD(){
 }
 
 void setup() {
+  Serial.print("Initiating...");
   lcd.begin(16, 2);
   lcd.setCursor(0, 0); lcd.print("Hello World!    ");
   lcd.setCursor(0, 1); lcd.print("                ");
-  delay(1500); resetLCD();
+  delay(1000); resetLCD();
   lcd.setCursor(0, 0); lcd.print("Air Quality     ");
   lcd.setCursor(0, 1); lcd.print("Monitoring      ");
-  delay(3000); resetLCD();
+  delay(1500); resetLCD();
   lcd.setCursor(0, 0); lcd.print("System          ");
   lcd.setCursor(0, 1); lcd.print("                ");
-  delay(3000); resetLCD();
+  delay(1500); resetLCD();
   lcd.setCursor(0, 0); lcd.print("Project by      ");
   lcd.setCursor(0, 1); lcd.print("Sanaullah Shovon");
-  delay(3000); resetLCD();
+  delay(1500); resetLCD();
   lcd.setCursor(0, 0); lcd.print("Jannatul Mim    ");
   lcd.setCursor(0, 1); lcd.print("Abdur Rahman    ");
-  delay(3000); resetLCD();
+  delay(1500); resetLCD();
   lcd.setCursor(0, 0); lcd.print("Jubaiya Moushi &");
   lcd.setCursor(0, 1); lcd.print("Kazi Amir Hamza ");
   delay(4000); resetLCD(); delay(2000);
@@ -117,13 +115,13 @@ void loop() {
     h = dht.readHumidity();
     t = dht.readTemperature();
     Serial.print("Temp: "); Serial.print(t); Serial.print(" *C");
-    Serial.print("Humi: "); Serial.print(h); Serial.print(" %");
+    Serial.print("Humi: "); Serial.print(h); Serial.print(" %\n");
   }
   resetLCD();
   delay(1000);
   lcd.setCursor(0, 0);
   lcd.print("Temp: ");
-  lcd.setCursor(6, 0); lcd.print(t); lcd.setCursor(13, 1); lcd.print("°C  ");
+  lcd.setCursor(6, 0); lcd.print(t); lcd.setCursor(13, 0); lcd.print("°C  ");
   delay(4000); resetLCD(); delay(2000);
   lcd.setCursor(0, 0);
   lcd.print("Humidity: ");
